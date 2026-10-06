@@ -6,7 +6,6 @@ PhyloVista is a fast, ARB-style phylogenetic tree explorer that runs entirely in
 taxonomy, annotate clades, search and highlight by metadata, compare taxonomies, re-root and export figures.
 This repository hosts a demo build and demo datasets for testing.
 
-- **Feedback:** [open the feedback form](https://github.com/oamys/phylovista-demo/issues/new?template=feedback.yml)
 - **Offline:** download [`phylovista.html`](phylovista.html) and double-click it.
 
 Contents: `index.html` (landing page), `app/` (the viewer), `phylovista.html` (single-file viewer), `data/` (demo datasets).
