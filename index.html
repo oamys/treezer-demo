@@ -64,9 +64,9 @@
 
       <h2>Demo datasets</h2>
       <div class="cards">
-        <a class="card" href="app/?tree=../data/gtdb_r226_ar53.tree&metadata=../data/gtdb_r226_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum">
+        <a class="card" href="app/?tree=../data/gtdb_r226_ar53.tree&metadata=../data/gtdb_r226_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=ncbi_country,checkm2_completeness,genome_size,gc_percentage">
           <b>Archaea: tree + taxonomy + metadata</b>
-          <span>The GTDB r226 archaeal tree with genome quality, size, GC, isolation source and country for every species. Good first stop.</span>
+          <span>The GTDB r226 archaeal tree with genome quality, size, GC, isolation source and country for every species, shown as trait strips beside the tree. Good first stop.</span>
           <span class="meta">6,968 species · 2.6 MB · loads in a few seconds</span>
         </a>
         <a class="card" href="app/?tree=../data/gtdb_r226_ar53.tree&metadata=../data/gtdb_r226_ar53_metadata.tsv&columns=ncbi_taxonomy,gtdb_taxonomy,ncbi_organism_name,checkm2_completeness&taxonomyColumn=ncbi_taxonomy&collapse=phylum&panel=monophyly">
@@ -74,7 +74,7 @@
           <span>The same tree labelled with NCBI's taxonomy instead: the monophyly panel lists which NCBI taxa are split in the GTDB tree, and where.</span>
           <span class="meta">6,968 species · opens the monophyly report</span>
         </a>
-        <a class="card" href="app/?tree=../data/gtdb_r226_bac120.tree&metadata=../data/gtdb_r226_bac120_metadata.tsv.gz&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum">
+        <a class="card" href="app/?tree=../data/gtdb_r226_bac120.tree&metadata=../data/gtdb_r226_bac120_metadata.tsv.gz&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=genome_size,gc_percentage">
           <b>Bacteria: the full GTDB tree</b>
           <span>All 136,646 bacterial species with metadata. Shows how the viewer copes with very large trees.</span>
           <span class="meta">136,646 species · 16 MB download · ~10–20 s to load</span>
@@ -92,6 +92,7 @@
         <li>Press <code>/</code> and search <code>g__Methanobrevibacter</code>; press Enter to jump there.</li>
         <li>Search <code>checkm2_completeness&gt;=95 genome_size&lt;1500000</code> and press <b>Shift+Enter</b> to highlight the matches; use ⊙ in the Highlights panel to focus on them.</li>
         <li>Open the <b>genomes</b> table, filter it, and try <b>Highlight each value of… ncbi_country</b>.</li>
+        <li>Look at the trait strips on the right: hover a cell; fold a clade and see its summary. Open <b>strips</b> to add or remove columns, and try the <b>RED</b> button.</li>
         <li>Right-click a clade → <b>Create group…</b>, give it a name and colour. Then <b>Export ▾ → SVG</b> for a figure.</li>
         <li>Open the <b>NCBI vs GTDB</b> dataset and look at the monophyly report: click <b>highlight</b> next to a split taxon.</li>
         <li>If you have your own tree (Newick) and a table of genomes (TSV/CSV, or a GTDB-Tk summary), try them with <b>Open tree…</b> and <b>Load data…</b>.</li>
