@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PhyloVista — demo</title>
+    <meta name="description" content="PhyloVista: explore large phylogenetic trees in your browser. Try the demo datasets and tell us what you think." />
+    <style>
+      :root {
+        --bg: #f6f7f8;
+        --panel: #ffffff;
+        --text: #172126;
+        --muted: #5d6b73;
+        --accent: #1f5f8b;
+        --accent-dark: #174b6e;
+        --green: #1d6b58;
+        --border: #d6dde2;
+        --warm: #fff4e0;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; font: 15px/1.55 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; color: var(--text); background: var(--bg); }
+      main { max-width: 920px; margin: 0 auto; padding: 32px 18px 48px; }
+      h1 { font-size: 32px; margin: 0 0 4px; letter-spacing: 0.3px; }
+      h2 { font-size: 19px; margin: 36px 0 10px; }
+      p { margin: 6px 0; }
+      .lead { font-size: 17px; color: var(--muted); max-width: 680px; }
+      .tag { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 10px; background: var(--warm); color: #7a5200; font-size: 12px; vertical-align: middle; }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 6px; }
+      .btn { display: inline-block; padding: 9px 16px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; }
+      .btn:hover { background: var(--accent-dark); }
+      .btn.secondary { background: #fff; color: var(--accent); }
+      .btn.secondary:hover { background: #eef4fa; }
+      .btn.warm { background: var(--warm); border-color: #d9a441; color: #7a5200; }
+      .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+      .card { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; color: inherit; text-decoration: none; }
+      .card:hover { border-color: var(--accent); box-shadow: 0 2px 10px rgba(15, 30, 40, 0.06); }
+      .card b { color: var(--accent); font-size: 16px; }
+      .card span { color: var(--muted); font-size: 14px; }
+      .card .meta { margin-top: auto; font-size: 12px; color: var(--muted); }
+      ol.tasks { padding-left: 22px; }
+      ol.tasks li { margin: 6px 0; }
+      code { font-size: 13px; background: #eef2f4; padding: 1px 5px; border-radius: 4px; }
+      .feedback { margin-top: 12px; padding: 16px 18px; background: var(--warm); border: 1px solid #f0d9ae; border-radius: 8px; }
+      .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px 24px; }
+      footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+      img.shot { width: 100%; border: 1px solid var(--border); border-radius: 8px; margin-top: 14px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>PhyloVista <span class="tag">demo · feedback welcome</span></h1>
+      <p class="lead">
+        A fast, ARB-style phylogenetic tree explorer that runs entirely in your browser. Fold large microbial trees by taxonomy,
+        annotate clades, search and highlight by metadata, compare taxonomies and export figures — on trees as large as the full
+        GTDB bacterial tree.
+      </p>
+      <div class="actions">
+        <a class="btn" href="app/?example">Open the viewer with an example</a>
+        <a class="btn secondary" href="app/">Open the viewer (empty — load your own tree)</a>
+        <a class="btn secondary" href="phylovista.html" download>Download as one file (works offline)</a>
+        <a class="btn warm" href="https://github.com/oamys/phylovista-demo/issues/new?template=feedback.yml">Give feedback</a>
+      </div>
+      <p><small>Nothing is uploaded: your files are read by your browser and stay on your computer. No tracking.</small></p>
+      <img class="shot" src="screenshot.png" alt="PhyloVista showing the GTDB archaeal tree folded to phylum" />
+
+      <h2>Demo datasets</h2>
+      <div class="cards">
+        <a class="card" href="app/?tree=../data/gtdb_r226_ar53.tree&metadata=../data/gtdb_r226_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum">
+          <b>Archaea: tree + taxonomy + metadata</b>
+          <span>The GTDB r226 archaeal tree with genome quality, size, GC, isolation source and country for every species. Good first stop.</span>
+          <span class="meta">6,968 species · 2.6 MB · loads in a few seconds</span>
+        </a>
+        <a class="card" href="app/?tree=../data/gtdb_r226_ar53.tree&metadata=../data/gtdb_r226_ar53_metadata.tsv&columns=ncbi_taxonomy,gtdb_taxonomy,ncbi_organism_name,checkm2_completeness&taxonomyColumn=ncbi_taxonomy&collapse=phylum&panel=monophyly">
+          <b>NCBI vs GTDB taxonomy</b>
+          <span>The same tree labelled with NCBI's taxonomy instead: the monophyly panel lists which NCBI taxa are split in the GTDB tree, and where.</span>
+          <span class="meta">6,968 species · opens the monophyly report</span>
+        </a>
+        <a class="card" href="app/?tree=../data/gtdb_r226_bac120.tree&metadata=../data/gtdb_r226_bac120_metadata.tsv.gz&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum">
+          <b>Bacteria: the full GTDB tree</b>
+          <span>All 136,646 bacterial species with metadata. Shows how the viewer copes with very large trees.</span>
+          <span class="meta">136,646 species · 16 MB download · ~10–20 s to load</span>
+        </a>
+        <a class="card" href="app/?example">
+          <b>Built-in example (offline)</b>
+          <span>The archaeal tree with taxonomy, bundled inside the app — also in the downloadable single file.</span>
+          <span class="meta">6,968 species · no download needed</span>
+        </a>
+      </div>
+
+      <h2>Things to try (5 minutes)</h2>
+      <ol class="tasks">
+        <li>Open the <b>Archaea</b> dataset. It starts folded to phylum. Right-click a phylum → <b>Expand to order</b>; the rest stays folded.</li>
+        <li>Press <code>/</code> and search <code>g__Methanobrevibacter</code>; press Enter to jump there.</li>
+        <li>Search <code>checkm2_completeness&gt;=95 genome_size&lt;1500000</code> and press <b>Shift+Enter</b> to highlight the matches; use ⊙ in the Highlights panel to focus on them.</li>
+        <li>Open the <b>genomes</b> table, filter it, and try <b>Highlight each value of… ncbi_country</b>.</li>
+        <li>Right-click a clade → <b>Create group…</b>, give it a name and colour. Then <b>Export ▾ → SVG</b> for a figure.</li>
+        <li>Open the <b>NCBI vs GTDB</b> dataset and look at the monophyly report: click <b>highlight</b> next to a split taxon.</li>
+        <li>If you have your own tree (Newick) and a table of genomes (TSV/CSV, or a GTDB-Tk summary), try them with <b>Open tree…</b> and <b>Load data…</b>.</li>
+      </ol>
+
+      <h2>Feedback</h2>
+      <div class="feedback">
+        <p><b>We would love to hear how it went</b> — what you tried, what worked, what was confusing, and whether you would use it for your own work.</p>
+        <div class="actions">
+          <a class="btn warm" href="https://github.com/oamys/phylovista-demo/issues/new?template=feedback.yml">Fill in the feedback form</a>
+        </div>
+        <p><small>The form is a GitHub issue (a free GitHub account is needed). Feedback posted there is public.</small></p>
+      </div>
+
+      <h2>Quick reference</h2>
+      <div class="grid2">
+        <p>Click: select · Double-click: fold/unfold</p>
+        <p>Shift+click: expand to the next rank</p>
+        <p>Alt/Option+click: distance to the selection</p>
+        <p>Right-click: menu (expand to rank, groups, root, export…)</p>
+        <p>Drag: pan · Wheel: zoom · Shift+wheel: zoom width</p>
+        <p><code>f</code> fit · <code>/</code> search · <code>g</code> group · ⌘Z / Ctrl+Z undo</p>
+      </div>
+
+      <footer>
+        Demo data: Genome Taxonomy Database release 226 (<a href="https://gtdb.ecogenomic.org">gtdb.ecogenomic.org</a>), tree,
+        taxonomy and selected metadata columns for species representatives, licensed
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. PhyloVista is in development; this page hosts a
+        demo build for testing.
+      </footer>
+    </main>
+  </body>
+</html>
