@@ -57,7 +57,7 @@
       <h1>Tree viewer <small class="tbd">(name to be decided)</small> <span class="tag">demo</span></h1>
       <p class="lead">
         A fast, ARB-style phylogenetic tree explorer that runs entirely in your browser. Fold large microbial trees by taxonomy,
-        annotate clades, search and highlight by metadata, compare taxonomies and export figures — on trees as large as the full
+        annotate and shade clades, search and highlight by metadata, compare taxonomies, draw rectangular, circular or unrooted trees and export publication figures — on trees as large as the full
         GTDB bacterial tree.
       </p>
       <div class="actions">
@@ -85,39 +85,25 @@
           <span>All 189,801 bacterial species with metadata. Shows how the viewer copes with very large trees.</span>
           <span class="meta">189,801 species · 23 MB download · ~15–30 s to load</span>
         </a>
+        <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=order&shade=phylum&layout=circular">
+          <b>Archaea, circular, shaded by phylum</b>
+          <span>Folded to order. Open the <b>clades</b> tab to change the rank, colours, fade/solid/band, depth and labels; Export ▾ → SVG for a figure.</span>
+          <span class="meta">10,122 species</span>
+        </a>
+        <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=order&shade=phylum&layout=unrooted">
+          <b>Archaea, unrooted</b>
+          <span>Equal-angle layout: every clade has its own wedge, so branches never cross. Try branch lengths “square root” in the clades tab.</span>
+          <span class="meta">10,122 species</span>
+        </a>
+        <a class="card" href="app/?tree=../data/gtdb_r232_bac120.tree&metadata=../data/gtdb_r232_bac120_metadata.tsv.gz&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=phylum&shade=phylum&layout=circular">
+          <b>Bacteria, circular</b>
+          <span>The full GTDB bacterial tree folded to phylum and shaded. Switch layouts with the menu in the toolbar.</span>
+          <span class="meta">189,801 species · 23 MB</span>
+        </a>
         <a class="card" href="app/?example">
           <b>Built-in example (offline)</b>
           <span>The archaeal tree with taxonomy, bundled inside the app — also in the downloadable single file.</span>
           <span class="meta">10,122 species · no download needed</span>
-        </a>
-      </div>
-
-      <h2>Beta: circular and unrooted trees <span class="tag">beta</span></h2>
-      <p>
-        The full edition adds <b>circular</b> and <b>unrooted</b> layouts and <b>clade shading</b>: every taxon at a chosen rank
-        shaded and named around the tree, with fade, solid or band styles and your own colours and labels. It is still being
-        finished — feedback especially welcome.
-      </p>
-      <div class="cards">
-        <a class="card" href="beta/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=order&shade=phylum&layout=circular">
-          <b>Archaea, circular, shaded by phylum</b>
-          <span>Folded to order. Open the <b>clades</b> tab to change the rank, colours, fade/solid/band, depth and labels; Export ▾ → SVG for a figure.</span>
-          <span class="meta">10,122 species · beta</span>
-        </a>
-        <a class="card" href="beta/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=order&shade=phylum&layout=unrooted">
-          <b>Archaea, unrooted</b>
-          <span>Equal-angle layout: every clade has its own wedge, so branches never cross. Try branch lengths “square root” in the clades tab.</span>
-          <span class="meta">10,122 species · beta</span>
-        </a>
-        <a class="card" href="beta/?tree=../data/gtdb_r232_bac120.tree&metadata=../data/gtdb_r232_bac120_metadata.tsv.gz&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=phylum&shade=phylum&layout=circular">
-          <b>Bacteria, circular</b>
-          <span>The full GTDB bacterial tree folded to phylum and shaded. Switch layouts with the menu in the toolbar.</span>
-          <span class="meta">189,801 species · 23 MB · beta</span>
-        </a>
-        <a class="card" href="beta/">
-          <b>Open the beta (empty)</b>
-          <span>Load your own tree and data; the layout menu in the toolbar switches between rectangular, circular and unrooted.</span>
-          <span class="meta">nothing uploaded</span>
         </a>
       </div>
 
