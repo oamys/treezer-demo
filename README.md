@@ -1,14 +1,14 @@
-# PhyloVista — demo
+# Tree viewer (name to be decided) — demo
 
 **Try it:** https://oamys.github.io/phylovista-demo/
 
-PhyloVista is a fast, ARB-style phylogenetic tree explorer that runs entirely in the browser: fold large microbial trees by
+This viewer is a fast, ARB-style phylogenetic tree explorer that runs entirely in the browser: fold large microbial trees by
 taxonomy, annotate clades, search and highlight by metadata, compare taxonomies, re-root and export figures.
 This repository hosts a demo build and demo datasets for testing.
 
-- **Offline:** download [`phylovista.html`](phylovista.html) and double-click it.
+- **Offline:** download [`tree-viewer.html`](tree-viewer.html) and double-click it.
 
-Contents: `index.html` (landing page), `app/` (the viewer), `phylovista.html` (single-file viewer), `data/` (demo datasets).
+Contents: `index.html` (landing page), `app/` (the viewer), `tree-viewer.html` (single-file viewer), `data/` (demo datasets).
 
 ## Data
 
