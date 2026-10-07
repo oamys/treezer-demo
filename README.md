@@ -12,7 +12,7 @@ Contents: `index.html` (landing page), `app/` (the viewer), `phylovista.html` (s
 
 ## Data
 
-`data/` contains the Genome Taxonomy Database (GTDB) release 226 archaeal and bacterial trees and selected metadata columns
+`data/` contains the Genome Taxonomy Database (GTDB) release 232 archaeal and bacterial trees and selected metadata columns
 for species representatives (taxonomy, NCBI taxonomy and organism name, CheckM2 completeness/contamination, genome size,
 GC %, isolation source, country, type species of genus). Source: https://gtdb.ecogenomic.org — licensed
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
