@@ -37,7 +37,12 @@
       .card b { color: var(--accent); font-size: 16px; }
       .card span { color: var(--muted); font-size: 14px; }
       .card .meta { margin-top: auto; font-size: 12px; color: var(--muted); }
-      ol.tasks { padding-left: 22px; }
+      ol.tasks, ol.steps { padding-left: 22px; }
+      ol.steps > li { margin: 12px 0; }
+      ul.kinds { margin: 6px 0; padding-left: 20px; }
+      ul.kinds li { margin: 3px 0; }
+      pre { margin: 8px 0; padding: 10px 12px; background: #eef2f4; border-radius: 6px; font-size: 13px; overflow-x: auto; }
+      .note { padding: 10px 14px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: 14px; }
       ol.tasks li { margin: 6px 0; }
       code { font-size: 13px; background: #eef2f4; padding: 1px 5px; border-radius: 4px; }
       .feedback { margin-top: 12px; padding: 16px 18px; background: var(--warm); border: 1px solid #f0d9ae; border-radius: 8px; }
@@ -71,7 +76,7 @@
         </a>
         <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=ncbi_taxonomy,gtdb_taxonomy,ncbi_organism_name,checkm2_completeness&taxonomyColumn=ncbi_taxonomy&collapse=phylum&panel=monophyly">
           <b>NCBI vs GTDB taxonomy</b>
-          <span>The same tree labelled with NCBI's taxonomy instead: the monophyly panel lists which NCBI taxa are split in the GTDB tree, and where.</span>
+          <span>The same tree labelled with NCBI's taxonomy instead: the monophyly panel lists which NCBI taxa are split in the GTDB tree, and where. Switch to the GTDB taxonomy with <b>compare with</b>.</span>
           <span class="meta">10,122 species · opens the monophyly report</span>
         </a>
         <a class="card" href="app/?tree=../data/gtdb_r232_bac120.tree&metadata=../data/gtdb_r232_bac120_metadata.tsv.gz&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=genome_size,gc_percentage">
@@ -86,6 +91,57 @@
         </a>
       </div>
 
+      <h2>Use your own tree and data</h2>
+      <p>
+        Open the viewer (<a href="app/">empty</a>, or the <a href="phylovista.html" download>single file</a> offline) and load your
+        files with the buttons at the top left, or drag and drop them onto the page. Files never leave your computer.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>Open tree…</b> — a Newick tree: IQ-TREE <code>.treefile</code>, FastTree, RAxML, GTDB-Tk <code>de_novo_wf</code> or
+          GTDB trees (<code>.nwk</code>, <code>.tree</code>, <code>.tre</code>, <code>.txt</code>). Support values and
+          GTDB-style internal labels such as <code>'100.0:p__Bacillota'</code> are understood. Trees with 100,000+ genomes are fine.
+        </li>
+        <li>
+          <b>Load data…</b> — a table about your genomes (TSV or CSV, optionally <code>.gz</code>). One column must hold the
+          names used as tips in the tree; the viewer finds it (e.g. <code>genome</code>, <code>accession</code>,
+          <code>user_genome</code>) and shows how many genomes matched. Accessions match with or without the GTDB
+          <code>RS_</code>/<code>GB_</code> prefix and version, and assembly file names such as
+          <code>GCA_000005845.2_ASM584v2_genomic</code> match too. Pick the columns you want and, if the table has one, the
+          column to use as taxonomy (<b>Taxonomy from</b>).
+          <pre>genome	gtdb_taxonomy	habitat	completeness
+bin_001	d__Bacteria;p__Chloroflexota;c__Anaerolineae;o__;f__;g__;s__	soil	92.4
+GCA_000005845.2	d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…	gut	100</pre>
+          Tables the viewer recognises:
+          <ul class="kinds">
+            <li><b>GTDB taxonomy file</b> (<code>bac120_taxonomy_r232.tsv</code>: accession + lineage) — becomes the taxonomy.</li>
+            <li><b>GTDB-Tk summary</b> (<code>gtdbtk.bac120.summary.tsv</code>) — its classification becomes the taxonomy;
+              closest reference, ANI and RED go to the table.</li>
+            <li><b>GTDB metadata</b> (<code>bac120_metadata_r232.tsv.gz</code>, 300 MB) — streamed; choose the columns.</li>
+            <li><b>Your own metadata</b> — any columns: habitat, quality, traits… Use them in searches
+              (<code>habitat=soil</code>, <code>completeness&gt;=90</code>), in the genome table and as trait strips.</li>
+            <li><b>Feature tables</b> — genome + feature (e.g. KEGG KOs from DRAM), or features × genomes — for presence /
+              absence strips.</li>
+          </ul>
+          Empty ranks such as <code>o__;f__</code> are fine: those genomes are simply unassigned at that rank.
+        </li>
+        <li>
+          <b>Fold, search, annotate.</b> The rank buttons fold the tree by taxonomy; right-click any clade for more. Your own
+          groups and edited fields are kept in this browser.
+        </li>
+        <li>
+          <b>Compare your tree with a taxonomy</b> in the <b>monophyly</b> tab: it lists the taxa your tree splits, how badly
+          (piece sizes, genomes outside the main piece, support of the separating branches), and highlights the stray genomes.
+          Root the tree first — the tab warns if it looks unrooted and can root it on an outgroup taxon for you. With several
+          taxonomy columns loaded (e.g. GTDB and NCBI), switch between them with <b>compare with</b>.
+        </li>
+        <li>
+          <b>Save your work</b> with <b>Export ▾ → Save session</b> (one <code>.phylovista</code> file with tree, data,
+          groups, highlights and folds; reopen it with Open tree…), or export a figure (SVG, PNG, PDF), the re-rooted tree or
+          tables.
+        </li>
+      </ol>
+
       <h2>Things to try (5 minutes)</h2>
       <ol class="tasks">
         <li>Open the <b>Archaea</b> dataset. It starts folded to phylum. Right-click a phylum → <b>Expand to order</b>; the rest stays folded.</li>
@@ -94,7 +150,7 @@
         <li>Open the <b>genomes</b> table, filter it, and try <b>Highlight each value of… ncbi_country</b>.</li>
         <li>Look at the trait strips on the right: hover a cell; fold a clade and see its summary. Open <b>strips</b> to add or remove columns, and try the <b>RED</b> button.</li>
         <li>Right-click a clade → <b>Create group…</b>, give it a name and colour. Then <b>Export ▾ → SVG</b> for a figure.</li>
-        <li>Open the <b>NCBI vs GTDB</b> dataset and look at the monophyly report: click <b>highlight</b> next to a split taxon.</li>
+        <li>Open the <b>NCBI vs GTDB</b> dataset and look at the monophyly report: click <b>highlight</b> or <b>strays</b> next to a split taxon, then switch <b>compare with</b> to <code>gtdb_taxonomy</code>.</li>
         <li>If you have your own tree (Newick) and a table of genomes (TSV/CSV, or a GTDB-Tk summary), try them with <b>Open tree…</b> and <b>Load data…</b>.</li>
       </ol>
 
