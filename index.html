@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tree viewer (name to be decided) — demo</title>
-    <meta name="description" content="A phylogenetic tree viewer (name to be decided) that runs in your browser. Try the demo datasets." />
+    <title>Treezer — demo</title>
+    <meta name="description" content="Treezer, a phylogenetic tree viewer that runs in your browser. Try the demo datasets." />
     <style>
       :root {
         --bg: #f6f7f8;
@@ -24,7 +24,6 @@
       h2 { font-size: 19px; margin: 36px 0 10px; }
       p { margin: 6px 0; }
       .lead { font-size: 17px; color: var(--muted); max-width: 680px; }
-      .tbd { font-size: 16px; font-weight: 400; color: var(--muted); }
       .tag { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 10px; background: var(--warm); color: #7a5200; font-size: 12px; vertical-align: middle; }
       .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 6px; }
       .btn { display: inline-block; padding: 9px 16px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; }
@@ -54,7 +53,7 @@
   </head>
   <body>
     <main>
-      <h1>Tree viewer <small class="tbd">(name to be decided)</small> <span class="tag">demo</span></h1>
+      <h1>Treezer <span class="tag">demo</span></h1>
       <p class="lead">
         A fast, ARB-style phylogenetic tree explorer that runs entirely in your browser. Fold large microbial trees by taxonomy,
         annotate and shade clades, search and highlight by metadata, compare taxonomies, draw rectangular, circular or unrooted trees and export publication figures — on trees as large as the full
@@ -63,10 +62,10 @@
       <div class="actions">
         <a class="btn" href="app/?example">Open the viewer with an example</a>
         <a class="btn secondary" href="app/">Open the viewer (empty — load your own tree)</a>
-        <a class="btn secondary" href="tree-viewer.html" download>Download as one file (works offline)</a>
+        <a class="btn secondary" href="treezer.html" download>Download as one file (works offline)</a>
       </div>
       <p><small>Nothing is uploaded: your files are read by your browser and stay on your computer. No tracking.</small></p>
-      <img class="shot" src="screenshot.png" alt="The viewer showing the GTDB archaeal tree folded to phylum" />
+      <img class="shot" src="screenshot.png" alt="Treezer showing the GTDB archaeal tree folded to phylum" />
 
       <h2>Demo datasets</h2>
       <div class="cards">
@@ -109,7 +108,7 @@
 
       <h2>Use your own tree and data</h2>
       <p>
-        Open the viewer (<a href="app/">empty</a>, or the <a href="tree-viewer.html" download>single file</a> offline) and load your
+        Open the viewer (<a href="app/">empty</a>, or the <a href="treezer.html" download>single file</a> offline) and load your
         files with the buttons at the top left, or drag and drop them onto the page. Files never leave your computer.
       </p>
       <ol class="steps">
@@ -157,7 +156,7 @@ GCA_000005845.2	d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…	gut	100
           taxonomy columns loaded (e.g. GTDB and NCBI), switch between them with <b>compare with</b>.
         </li>
         <li>
-          <b>Save your work</b> with <b>Export ▾ → Save session</b> (one <code>.phylovista</code> file with tree, data,
+          <b>Save your work</b> with <b>Export ▾ → Save session</b> (one <code>.treezer</code> file with tree, data,
           groups, highlights and folds; reopen it with Open tree…), or export a figure (SVG, PNG, PDF), the re-rooted tree or
           tables.
         </li>
@@ -194,7 +193,7 @@ GCA_000005845.2	d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…	gut	100
       <footer>
         Demo data: Genome Taxonomy Database release 232 (<a href="https://gtdb.ecogenomic.org">gtdb.ecogenomic.org</a>), tree,
         taxonomy and selected metadata columns for species representatives, licensed
-        <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. The viewer is in development (its name is still to be decided); this page hosts a
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Treezer is in development; this page hosts a
         demo build for testing.
       </footer>
     </main>
