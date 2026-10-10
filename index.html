@@ -79,17 +79,14 @@
       .hero .lead { margin: 14px auto 0; font-size: 18px; line-height: 1.6; color: var(--muted); max-width: 640px; }
       .hero .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 32px; }
       .hero .onefile { margin: 16px auto 0; max-width: 520px; font-size: 14px; color: var(--muted); }
-      .hero .points { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; margin: 22px 0 0; padding: 0; list-style: none; font-size: 13.5px; color: var(--muted); }
-      .hero .points li { display: flex; align-items: center; gap: 7px; }
       .hero .build { margin-top: 18px; font: 12px var(--mono); color: var(--faint); letter-spacing: 0.01em; }
       @media (min-width: 1000px) {
         .hero { text-align: left; padding: 64px 0 64px; }
         .hero .wrap { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 48px; align-items: center; }
         .hero .lead, .hero .onefile { margin-left: 0; }
-        .hero .actions, .hero .points, .hero .tabs { justify-content: flex-start; }
+        .hero .actions, .hero .tabs { justify-content: flex-start; }
         .hero .view { margin-top: 0; }
       }
-      .hero .points li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
 
       /* Showcase */
       .hero .view { margin-top: 40px; }
@@ -124,7 +121,22 @@
       .spec-row p { margin-top: 3px; color: var(--muted); font-size: 14.5px; }
       #features aside { position: sticky; top: 96px; align-self: start; }
 
+      /* Interface overview */
+      .ui { margin: 0; }
+      .ui-shot { position: relative; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 18px 50px -24px rgba(60, 40, 110, 0.25); }
+      .ui-shot img { display: block; width: 100%; height: auto; }
+      .pin { position: absolute; display: grid; place-items: center; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: var(--accent); color: #fff; font: 600 13px var(--sans); box-shadow: 0 0 0 3px #fff, 0 2px 8px rgba(0, 0, 0, 0.25); }
+      .ui-legend { margin: 28px 0 0; padding: 0; list-style: none; counter-reset: u; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 40px; font-size: 14.5px; color: var(--muted); }
+      .ui-legend li { counter-increment: u; position: relative; padding-left: 36px; }
+      .ui-legend li::before { content: counter(u); position: absolute; left: 0; top: 1px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font: 600 12px var(--sans); }
+      .ui-legend b { color: var(--text); font-weight: 600; }
+
       /* Examples */
+      .group + .group { margin-top: 40px; }
+      .cards .card.shot { grid-column: span 2; flex-direction: row; }
+      .cards .card.shot img { width: 58%; flex: none; aspect-ratio: 16 / 9; object-fit: cover; object-position: left top; border-bottom: 0; border-right: 1px solid var(--border); }
+      .group-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 14px; }
+      .group-head p { font-size: 14px; color: var(--muted); }
       .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
       .card { display: flex; flex-direction: column; gap: 10px; padding: 20px; background: #fff; border: 1px solid var(--border); border-radius: 8px; color: inherit; }
       .card:hover { border-color: var(--accent); text-decoration: none; }
@@ -167,6 +179,10 @@
       .feedback { margin-top: 24px; padding: 20px 24px; background: var(--accent-tint); border-radius: 8px; font-size: 14.5px; }
       .feedback b { color: var(--accent-dark); }
 
+      .tour { margin-top: 24px; font-size: 14.5px; }
+      .tour summary { cursor: pointer; color: var(--accent); font-weight: 500; }
+      .tour .try { margin-top: 8px; }
+
       /* Cite */
       #cite .soon { margin-top: 10px; color: var(--muted); }
 
@@ -185,7 +201,10 @@
         .hero h1 { font-size: 48px; }
         .hero .tagline { font-size: 19px; }
         .hero .lead { font-size: 16px; }
-        .cards, .panels { grid-template-columns: minmax(0, 1fr); }
+        .cards, .panels, .ui-legend { grid-template-columns: minmax(0, 1fr); }
+        .cards .card.shot { grid-column: auto; flex-direction: column; }
+        .cards .card.shot img { width: 100%; border-right: 0; border-bottom: 1px solid var(--border); }
+        .pin { width: 18px; height: 18px; margin: -9px 0 0 -9px; font-size: 10.5px; box-shadow: 0 0 0 2px #fff; }
         .spec-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
         #features aside { position: static; }
         .split, footer .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
@@ -232,15 +251,11 @@
             your browser. From small species trees to genome phylogenies with over 100,000 tips.
           </p>
           <div class="actions">
-            <a class="btn" href="app/?example">Launch Treezer →</a>
-            <a class="btn ghost" href="treezer_demo.html" download>Download Treezer ↓</a>
+            <a class="btn" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum" title="Opens the GTDB archaeal tree with its metadata, folded to phylum">Launch Treezer →</a>
+            <a class="btn ghost tz-download" href="treezer-0.1.0.html" download>Download Treezer <span class="tz-version">0.1.0</span> <span class="tz-size">(2.5 MB)</span> ↓</a>
           </div>
           <p class="onefile">All you need is one HTML file: download it, double-click it, and Treezer opens in your web browser — even offline.</p>
-          <ul class="points">
-            <li>No installation</li>
-            <li>Save and resume sessions</li>
-          </ul>
-          <p class="build">Version <span id="tz-version">0.1.0</span> · tested with GTDB&nbsp;r232</p>
+          <p class="build">Version <span class="tz-version">0.1.0</span> · tested with GTDB&nbsp;r232</p>
           </div>
           <!-- 03 Viewer showcase -->
           <div class="view">
@@ -252,12 +267,20 @@
             <figure class="frame">
               <div class="bar"><i></i><i></i><i></i></div>
               <div class="stage" id="stage" role="tabpanel">
-                <img class="on" src="img/layout-rectangular.webp" alt="Rectangular layout: GTDB archaeal tree folded to phylum, shaded by phylum, with two highlighted genome sets" width="2400" height="1350" />
+                <picture>
+                  <source srcset="img/layout-rectangular.webp" media="(prefers-reduced-motion: reduce)" />
+                  <img class="on" src="img/layout-rectangular-folding.webp" alt="Rectangular layout with RED on: the toolbar's rank buttons fold the GTDB archaeal tree to phylum, class and order; then Asgardarchaeota is opened to order while the other phyla stay folded" width="1600" height="900" />
+                </picture>
                 <img src="img/layout-circular.webp" alt="Circular layout of the same tree with the same shading and highlights" width="2400" height="1350" loading="lazy" />
                 <img src="img/layout-unrooted.webp" alt="Unrooted layout of the same tree with the same shading and highlights" width="2400" height="1350" loading="lazy" />
               </div>
             </figure>
-            <p class="caption">
+            <p class="caption" data-i="0">
+              Fold the whole tree with the rank buttons, or open one clade and keep the rest folded. With <b>RED</b> on, dashed
+              lines mark each rank's median relative evolutionary divergence.
+              <small>GTDB r232 Archaea, 10,122 species; Asgardarchaeota opened to order.</small>
+            </p>
+            <p class="caption" data-i="1" hidden>
               Switch layouts while keeping your highlights and annotations.
               <small>GTDB r232 Archaea, 10,122 species, folded to phylum. Highlighted:<span class="swatch" style="background:#e35d12"></span><i>Methanobrevibacter</i> and<span class="swatch" style="background:#c72c5b"></span>Nitrosopumilaceae.</small>
             </p>
@@ -271,28 +294,36 @@
         <div class="wrap split">
           <aside>
             <h2>Everything in one viewer</h2>
-            <p>Other tree viewers do some of these. Treezer does all of them, together, in a single file that runs in your browser.</p>
+            <p>From a first look at a tree to a figure or a shared file, in one program that runs in your browser.</p>
           </aside>
           <div class="spec">
               <div class="spec-row">
-                <span class="spec-k">Scale</span>
-                <div><h3>Large trees stay smooth</h3><p>Pan, zoom and fold phylogenies with over 100,000 tips, like the full GTDB bacterial tree.</p></div>
+                <span class="spec-k">Portability</span>
+                <div><h3>One HTML file</h3><p>Treezer itself is a single file of about 2.5 MB. It runs offline in any browser: no installation, account or server, and your files are never uploaded.</p></div>
               </div>
               <div class="spec-row">
-                <span class="spec-k">Taxonomy</span>
-                <div><h3>Fold and unfold by rank</h3><p>Collapse the tree to phylum, class, order… and expand any clade to the next rank.</p></div>
+                <span class="spec-k">Sharing</span>
+                <div><h3>Share a tree with its data</h3><p>Save your tree, its data and the current view as their own HTML file (Export ▾ → Shareable HTML file). It opens by double-click for collaborators, as supplementary material, or from an archive such as Zenodo.</p></div>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">Figures</span>
+                <div><h3>Publication-ready figures</h3><p>SVG, PNG and PDF at journal column widths, with legends; also re-rooted trees, tables and genome lists.</p></div>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">Scale</span>
+                <div><h3>Large trees stay smooth</h3><p>Pan, zoom and fold trees with over 100,000 tips; the full GTDB bacterial tree has 189,801.</p></div>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">Metadata</span>
+                <div><h3>Explore by taxonomy and metadata</h3><p>Search by name, accession or any column (<code>completeness&gt;=90</code>), highlight and group the matches, and show data as tracks beside the tree.</p></div>
               </div>
               <div class="spec-row">
                 <span class="spec-k">Layouts</span>
                 <div><h3>Rectangular, circular, unrooted</h3><p>Switch at any time; folds, highlights and annotations carry over.</p></div>
               </div>
               <div class="spec-row">
-                <span class="spec-k">Search</span>
-                <div><h3>Find and highlight genomes</h3><p>Search by name, accession or metadata (<code>completeness&gt;=90</code>) and mark the matches.</p></div>
-              </div>
-              <div class="spec-row">
-                <span class="spec-k">Metadata</span>
-                <div><h3>Tracks beside the tree</h3><p>Colour strips, colour scales, heatmaps and presence/absence from your own tables or iTOL files.</p></div>
+                <span class="spec-k">Taxonomy</span>
+                <div><h3>Fold and unfold by rank</h3><p>Collapse the tree to phylum, class, order… and open any clade further while the rest stays folded.</p></div>
               </div>
               <div class="spec-row">
                 <span class="spec-k">Monophyly</span>
@@ -302,101 +333,142 @@
                 <span class="spec-k">Curation</span>
                 <div><h3>Edit the taxonomy</h3><p>Correct or extend lineages in the genome table and export them in GTDB format.</p></div>
               </div>
-              <div class="spec-row">
-                <span class="spec-k">Figures</span>
-                <div><h3>Publication-ready export</h3><p>SVG, PNG and PDF figures; re-rooted trees; tables and genome lists.</p></div>
-              </div>
-              <div class="spec-row">
-                <span class="spec-k">Portability</span>
-                <div><h3>One HTML file</h3><p>Runs offline in any browser. No installation, no account, no server; sessions save to a single file.</p></div>
-              </div>
           </div>
+        </div>
+      </section>
+
+      <!-- Interface overview -->
+      <section id="interface" class="alt">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>Explore the Treezer interface</h2>
+            <p>The top bar, the tree, the side panel and the panels below the tree.</p>
+          </div>
+          <figure class="ui">
+            <div class="ui-shot">
+              <img src="img/interface.webp" alt="The Treezer viewer: top bar, the archaeal tree folded to phylum with three data tracks, the side panel with groups, highlights and overview, and the genome table open below" width="2560" height="1520" loading="lazy" />
+              <span class="pin" style="left: 13.5%; top: 8.5%">1</span>
+              <span class="pin" style="left: 43.5%; top: 8.5%">2</span>
+              <span class="pin" style="left: 70%; top: 8.5%">3</span>
+              <span class="pin" style="left: 81.5%; top: 3%">4</span>
+              <span class="pin" style="left: 9%; top: 46%">5</span>
+              <span class="pin" style="left: 74%; top: 52.5%">6</span>
+              <span class="pin" style="left: 78.5%; top: 30%">7</span>
+              <span class="pin" style="left: 30%; top: 57%">8</span>
+            </div>
+          </figure>
+          <ol class="ui-legend">
+            <li><b>Open, Load data, Export.</b> Open a tree or a saved session, add tables about the genomes, and save sessions, figures or a shareable file.</li>
+            <li><b>Collapse to.</b> Fold the whole tree to a rank; <i>expand all</i> opens it again. Double-click a clade to fold or open just that one.</li>
+            <li><b>Layout and RED.</b> Rectangular, circular or unrooted; RED puts the tree on a relative-evolutionary-divergence scale.</li>
+            <li><b>Search.</b> Names, accessions, taxa or column values (<code>habitat=soil</code>); Enter jumps, Shift+Enter highlights all matches.</li>
+            <li><b>The tree.</b> Drag to pan, scroll to zoom, click to select, right-click a clade for its menu.</li>
+            <li><b>Tracks.</b> Data shown beside the tree: colour strips, scales, heatmaps; folded clades summarise their genomes.</li>
+            <li><b>Side panel.</b> Your groups, highlight sets and an overview of the whole tree; the icon at the top right shows or hides it.</li>
+            <li><b>Panels below the tree.</b> <i>Genomes</i> (the table: filter, highlight, edit taxonomy), <i>Monophyly</i>, <i>Annotate</i> (tracks), <i>Clades</i> (shading and names) and <i>Style</i>.</li>
+          </ol>
         </div>
       </section>
 
       <!-- 05 Example datasets -->
-      <section id="examples" class="alt">
+      <section id="examples">
         <div class="wrap">
           <div class="sec-head">
             <h2>Try an example</h2>
-            <p>Real trees that open directly in Treezer, ready to explore.</p>
+            <p>Real trees that open directly in Treezer, ready to explore. Every example uses Genome Taxonomy Database release 232 species representatives.</p>
           </div>
-          <div class="panels">
-            <a class="card shot" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=ncbi_country,checkm2_completeness,genome_size,gc_percentage&panel=genomes">
-              <img src="img/panel-genomes.webp" alt="Treezer with the genomes table open below the tree: taxonomy, organism name, completeness, genome size and GC for every genome" width="1520" height="855" loading="lazy" />
-              <div class="body">
-                <span class="kind">Genomes panel</span>
-                <h3>Browse the genome table</h3>
-                <p>Every genome with its taxonomy and metadata. Filter it, highlight matches on the tree, edit lineages and export the list.</p>
-                <div class="foot"><span>10,122 genomes · 11 columns</span><span class="go">Open →</span></div>
-              </div>
-            </a>
-            <a class="card shot" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=ncbi_country,checkm2_completeness,genome_size,gc_percentage&panel=annotate">
-              <img src="img/panel-annotate.webp" alt="Treezer with the annotate panel open: country, completeness, genome size and GC shown as tracks beside the tree" width="1520" height="855" loading="lazy" />
-              <div class="body">
-                <span class="kind">Annotate panel</span>
-                <h3>Add tracks beside the tree</h3>
-                <p>Show metadata as colour strips, colour scales, heatmaps or bars; folded clades summarise what they contain.</p>
-                <div class="foot"><span>4 tracks · country, quality, size, GC</span><span class="go">Open →</span></div>
-              </div>
-            </a>
+          <div class="group">
+            <div class="group-head"><h3>Getting started</h3><p>Open a tree straight away, or start from your own files.</p></div>
+            <div class="cards">
+              <a class="card" href="app/?example">
+                <span class="kind">Offline</span>
+                <h3>Built-in example</h3>
+                <p>The archaeal tree with taxonomy, bundled inside the app — also in the downloadable HTML file.</p>
+                <div class="foot"><span>10,122 tips · no download</span><span class="go">Open →</span></div>
+              </a>
+              <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=ncbi_country,checkm2_completeness,genome_size,gc_percentage">
+                <span class="kind">Tree + metadata</span>
+                <h3>Archaea with trait strips</h3>
+                <p>The GTDB archaeal tree with genome quality, size, GC, isolation source and country for every species, shown as strips beside the tree.</p>
+                <div class="foot"><span>10,122 tips · 3.8 MB</span><span class="go">Open →</span></div>
+              </a>
+              <a class="card own" href="app/">
+                <span class="kind">Your data</span>
+                <h3>Open your own tree</h3>
+                <p>Any Newick tree — IQ-TREE, FastTree, RAxML, GTDB-Tk — plus a TSV/CSV table about its tips. See the guide below.</p>
+                <div class="foot"><span>.nwk · .tree · .tsv · .csv</span><span class="go">Launch →</span></div>
+              </a>
+            </div>
           </div>
-          <div class="cards">
-            <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=ncbi_country,checkm2_completeness,genome_size,gc_percentage">
-              <span class="kind">Tree + metadata</span>
-              <h3>Archaea with trait strips</h3>
-              <p>The GTDB archaeal tree with genome quality, size, GC, isolation source and country for every species, shown as strips beside the tree.</p>
-              <div class="foot"><span>10,122 tips · 3.8 MB</span><span class="go">Open →</span></div>
-            </a>
-            <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=ncbi_taxonomy,gtdb_taxonomy,ncbi_organism_name,checkm2_completeness&taxonomyColumn=ncbi_taxonomy&collapse=phylum&panel=monophyly">
-              <span class="kind">Monophyly</span>
-              <h3>NCBI vs GTDB taxonomy</h3>
-              <p>The same tree labelled with NCBI's taxonomy: the monophyly panel lists which taxa the tree splits, and where. Switch with <b>compare with</b>.</p>
-              <div class="foot"><span>10,122 tips</span><span class="go">Open →</span></div>
-            </a>
-            <a class="card" href="app/?tree=../data/gtdb_r232_bac120.tree&metadata=../data/gtdb_r232_bac120_metadata.tsv.gz&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=genome_size,gc_percentage">
-              <span class="kind">Scale</span>
-              <h3>All bacteria</h3>
-              <p>The full GTDB bacterial tree: 189,801 species with metadata. Shows how Treezer copes with very large trees.</p>
-              <div class="foot"><span>189,801 tips · 23 MB · ~15–30 s</span><span class="go">Open →</span></div>
-            </a>
-            <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=order&shade=phylum&layout=circular">
-              <span class="kind">Circular layout</span>
-              <h3>Archaea, shaded by phylum</h3>
-              <p>Folded to order. Open the <b>clades</b> tab to change rank, colours, depth and labels; Export ▾ → SVG for a figure.</p>
-              <div class="foot"><span>10,122 tips</span><span class="go">Open →</span></div>
-            </a>
-            <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=order&shade=phylum&layout=unrooted">
-              <span class="kind">Unrooted layout</span>
-              <h3>Archaea, equal-angle</h3>
-              <p>Every clade has its own wedge, so branches never cross. Try branch lengths “square root” in the clades tab.</p>
-              <div class="foot"><span>10,122 tips</span><span class="go">Open →</span></div>
-            </a>
-            <a class="card" href="app/?tree=../data/gtdb_r232_bac120.tree&metadata=../data/gtdb_r232_bac120_metadata.tsv.gz&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=phylum&shade=phylum&layout=circular">
-              <span class="kind">Circular layout</span>
-              <h3>Bacteria, circular</h3>
-              <p>The full bacterial tree folded to phylum and shaded. Switch layouts with the menu in the toolbar.</p>
-              <div class="foot"><span>189,801 tips · 23 MB</span><span class="go">Open →</span></div>
-            </a>
-            <a class="card" href="app/?example">
-              <span class="kind">Offline</span>
-              <h3>Built-in example</h3>
-              <p>The archaeal tree with taxonomy, bundled inside the app — also in the downloadable HTML file.</p>
-              <div class="foot"><span>10,122 tips · no download</span><span class="go">Open →</span></div>
-            </a>
-            <a class="card own" href="app/">
-              <span class="kind">Your data</span>
-              <h3>Open your own tree</h3>
-              <p>Any Newick tree — IQ-TREE, FastTree, RAxML, GTDB-Tk — plus a TSV/CSV table about its tips. See the guide below.</p>
-              <div class="foot"><span>.nwk · .tree · .tsv · .csv</span><span class="go">Launch →</span></div>
-            </a>
+          <div class="group">
+            <div class="group-head"><h3>Taxonomy and metadata</h3><p>Browse every genome with its data, and check a taxonomy against the tree.</p></div>
+            <div class="cards">
+              <a class="card shot" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=ncbi_country,checkm2_completeness,genome_size,gc_percentage&panel=genomes">
+                <img src="img/panel-genomes.webp" alt="Treezer with the genomes table open below the tree: taxonomy, organism name, completeness, genome size and GC for every genome" width="1520" height="855" loading="lazy" />
+                <div class="body">
+                  <span class="kind">Genomes panel</span>
+                  <h3>Browse the genome table</h3>
+                  <p>Every genome with its taxonomy and metadata. Filter it, highlight matches on the tree, edit lineages and export the list.</p>
+                  <div class="foot"><span>10,122 genomes · 11 columns</span><span class="go">Open →</span></div>
+                </div>
+              </a>
+              <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=ncbi_taxonomy,gtdb_taxonomy,ncbi_organism_name,checkm2_completeness&taxonomyColumn=ncbi_taxonomy&collapse=phylum&panel=monophyly">
+                <span class="kind">Monophyly</span>
+                <h3>NCBI vs GTDB taxonomy</h3>
+                <p>The same tree labelled with NCBI's taxonomy: the monophyly panel lists which taxa the tree splits, and where. Switch with <b>compare with</b>.</p>
+                <div class="foot"><span>10,122 tips</span><span class="go">Open →</span></div>
+              </a>
+            </div>
           </div>
-          <p style="margin-top: 20px; font-size: 13px; color: var(--faint)">Demo trees: Genome Taxonomy Database release 232, species representatives.</p>
+          <div class="group">
+            <div class="group-head"><h3>Tracks and shading</h3><p>Data beside the tree, and clades shaded by rank.</p></div>
+            <div class="cards">
+              <a class="card shot" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=ncbi_country,checkm2_completeness,genome_size,gc_percentage&panel=annotate">
+                <img src="img/panel-annotate.webp" alt="Treezer with the annotate panel open: country, completeness, genome size and GC shown as tracks beside the tree" width="1520" height="855" loading="lazy" />
+                <div class="body">
+                  <span class="kind">Annotate panel</span>
+                  <h3>Add tracks beside the tree</h3>
+                  <p>Show metadata as colour strips, colour scales, heatmaps or bars; folded clades summarise what they contain.</p>
+                  <div class="foot"><span>4 tracks · country, quality, size, GC</span><span class="go">Open →</span></div>
+                </div>
+              </a>
+              <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=order&shade=phylum&layout=circular">
+                <span class="kind">Circular layout</span>
+                <h3>Archaea, shaded by phylum</h3>
+                <p>Folded to order. Open the <b>clades</b> tab to change rank, colours, depth and labels; Export ▾ → SVG for a figure.</p>
+                <div class="foot"><span>10,122 tips</span><span class="go">Open →</span></div>
+              </a>
+            </div>
+          </div>
+          <div class="group">
+            <div class="group-head"><h3>Layouts and large trees</h3><p>The unrooted layout, and the full GTDB bacterial tree (189,801 species; loads in about 15–30 s).</p></div>
+            <div class="cards">
+              <a class="card" href="app/?tree=../data/gtdb_r232_bac120.tree&metadata=../data/gtdb_r232_bac120_metadata.tsv.gz&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=genome_size,gc_percentage">
+                <span class="kind">Scale</span>
+                <h3>All bacteria</h3>
+                <p>The full GTDB bacterial tree: 189,801 species with metadata. Shows how Treezer copes with very large trees.</p>
+                <div class="foot"><span>189,801 tips · 23 MB · ~15–30 s</span><span class="go">Open →</span></div>
+              </a>
+              <a class="card" href="app/?tree=../data/gtdb_r232_bac120.tree&metadata=../data/gtdb_r232_bac120_metadata.tsv.gz&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=phylum&shade=phylum&layout=circular">
+                <span class="kind">Circular layout</span>
+                <h3>Bacteria, circular</h3>
+                <p>The full bacterial tree folded to phylum and shaded. Switch layouts with the menu in the toolbar.</p>
+                <div class="foot"><span>189,801 tips · 23 MB</span><span class="go">Open →</span></div>
+              </a>
+              <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=order&shade=phylum&layout=unrooted">
+                <span class="kind">Unrooted layout</span>
+                <h3>Archaea, equal-angle</h3>
+                <p>Every clade has its own wedge, so branches never cross. Try branch lengths “square root” in the clades tab.</p>
+                <div class="foot"><span>10,122 tips</span><span class="go">Open →</span></div>
+              </a>
+            </div>
+          </div>
+          </div>
         </div>
       </section>
 
       <!-- 06 Guide -->
-      <section id="guide">
+      <section id="guide" class="alt">
         <div class="wrap">
           <div class="split">
             <aside>
@@ -457,26 +529,10 @@ GCA_000005845.2  d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…       
                 <h3>Save your work</h3>
                 <p>
                   <b>Export ▾ → Save session</b> writes one <code>.treezer</code> session file with tree, data, groups, highlights and folds;
-                  reopen it with Open tree…. Or export a figure (SVG, PNG, PDF), the re-rooted tree or tables.
+                  reopen it with Open…. <b>Export ▾ → Shareable HTML file</b> saves the same as an HTML file that anyone can open by
+                  double-click, without Treezer. Or export a figure (SVG, PNG, PDF), the re-rooted tree or tables.
                 </p>
               </li>
-            </ol>
-          </div>
-
-          <div class="split">
-            <aside>
-              <h3>Things to try</h3>
-              <p>A five-minute tour using the example datasets.</p>
-            </aside>
-            <ol class="try">
-              <li><span>Open the <b>Archaea with trait strips</b> example. It starts folded to phylum. Right-click a phylum → <b>Expand to order</b>; the rest stays folded.</span></li>
-              <li><span>Press <kbd>/</kbd> and search <code>g__Methanobrevibacter</code>; press Enter to jump there.</span></li>
-              <li><span>Search <code>checkm2_completeness&gt;=95 genome_size&lt;1500000</code> and press <b>Shift+Enter</b> to highlight the matches; use ⊙ in the Highlights panel to focus on them.</span></li>
-              <li><span>Open the <b>genomes</b> table, filter it, and try <b>Highlight each value of… ncbi_country</b>.</span></li>
-              <li><span>Look at the trait strips on the right: hover a cell; fold a clade and see its summary. Open <b>strips</b> to add or remove columns, and try the <b>RED</b> button.</span></li>
-              <li><span>Right-click a clade → <b>Create group…</b>, give it a name and colour. Then <b>Export ▾ → SVG</b> for a figure.</span></li>
-              <li><span>Open the <b>NCBI vs GTDB</b> example and look at the monophyly report: click <b>highlight</b> or <b>strays</b> next to a split taxon, then switch <b>compare with</b> to <code>gtdb_taxonomy</code>.</span></li>
-              <li><span>If you have your own tree (Newick) and a table of genomes (TSV/CSV, or a GTDB-Tk summary), try them with <b>Open tree…</b> and <b>Load data…</b>.</span></li>
             </ol>
           </div>
 
@@ -495,6 +551,16 @@ GCA_000005845.2  d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…       
                 <dt>Drag · Wheel</dt><dd>Pan · zoom (Shift + wheel: zoom width)</dd>
                 <dt>Keys</dt><dd><kbd>f</kbd> fit · <kbd>/</kbd> search · <kbd>g</kbd> group · <kbd>⌘Z</kbd> / <kbd>Ctrl+Z</kbd> undo</dd>
               </dl>
+              <details class="tour">
+                <summary>Things to try — a five-minute tour</summary>
+                <ol class="try">
+                  <li><span>Open <b>Archaea with trait strips</b>. Right-click a phylum → <b>Expand to order</b>; the rest stays folded.</span></li>
+                  <li><span>Press <kbd>/</kbd>, type <code>g__Methanobrevibacter</code> and press Enter to jump there.</span></li>
+                  <li><span>Search <code>checkm2_completeness&gt;=95</code> and press <b>Shift+Enter</b> to highlight the matches.</span></li>
+                  <li><span>Press <b>RED</b> to see where each rank's median divergence falls.</span></li>
+                  <li><span>Open <b>NCBI vs GTDB taxonomy</b> and click <b>highlight</b> next to a split taxon.</span></li>
+                </ol>
+              </details>
               <p class="feedback">
                 <b>Feedback.</b> Comments, problems or ideas? Please send them directly to the person who shared this link with you — what
                 you tried, what worked, what was confusing, and whether you would use it for your own work.
@@ -505,7 +571,7 @@ GCA_000005845.2  d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…       
       </section>
 
       <!-- Cite -->
-      <section id="cite" class="alt">
+      <section id="cite">
         <div class="wrap">
           <h2>Cite Treezer</h2>
           <p class="soon">Coming soon.</p>
@@ -519,8 +585,8 @@ GCA_000005845.2  d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…       
         <div>
           <span class="brand"><img class="mark" src="img/logo.svg" alt="" width="24" height="24" />Treezer <span class="pill">demo</span></span>
           <div class="links">
-            <a href="app/">Launch</a>
-            <a href="treezer_demo.html" download>Download Treezer</a>
+            <a href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum">Launch</a>
+            <a class="tz-download" href="treezer-0.1.0.html" download>Download Treezer <span class="tz-version">0.1.0</span></a>
             <a href="https://github.com/oamys/treezer-demo">GitHub</a>
           </div>
         </div>
@@ -539,9 +605,12 @@ GCA_000005845.2  d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…       
       (function () {
         var tabs = document.querySelectorAll('.tabs button');
         var imgs = document.querySelectorAll('.stage img');
+        var captions = document.querySelectorAll('.hero .caption');
         function show(i) {
           tabs.forEach(function (t, j) { t.setAttribute('aria-selected', String(j === i)); });
           imgs.forEach(function (im, j) { im.classList.toggle('on', j === i); });
+          // The rectangular view has its own caption; circular and unrooted share one.
+          captions.forEach(function (c) { c.hidden = +c.dataset.i !== Math.min(i, 1); });
         }
         tabs.forEach(function (t) { t.addEventListener('click', function () { show(+t.dataset.i); }); });
       })();
