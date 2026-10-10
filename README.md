@@ -2,13 +2,24 @@
 
 **Try it:** https://oamys.github.io/treezer-demo/
 
-Treezer is a fast, ARB-style phylogenetic tree explorer that runs entirely in the browser: fold large microbial trees by
-taxonomy, annotate clades, search and highlight by metadata, compare taxonomies, re-root and export figures.
-This repository hosts a demo build and demo datasets for testing.
+**One HTML file. No backend. No installation. Share your trees and annotations with ease.**
 
-- **Offline:** download [`treezer_demo.html`](treezer.html) and double-click it.
+Treezer is a lightweight, responsive, and interactive phylogenetic tree explorer that runs entirely in your browser. Designed for exploring large phylogenies with over 100,000 even a million tips, Treezer lets you:
 
-Contents: `index.html` (landing page), `app/` (the viewer), `treezer.html` (single-file viewer; `tree-viewer.html` is the same file under its old name), `data/` (demo datasets).
+- **Explore large trees** – Collapse and expand clades by taxonomy for easier navigation.
+- **Annotate and customise** – Annotate clades, search, group, and highlight taxa using taxonomy or metadata.
+- **Compare taxonomies** – Visualise and explore differences between taxonomic classifications.
+- **Switch between layouts** – View trees in rectangular, circular, or unrooted layouts keeping the same annotations.
+- **Export publication-quality figures** – Create high-quality figures for publications and presentations.
+- **Save and share your work** – Save your sessions as self-contained HTML files, preserving your tree, metadata, annotations, and visualisation settings for easy sharing and later use.
+
+All you need to get started is a tree file and a metadata table containing tip names, taxonomy, and any additional fields of interest.
+
+This repository hosts a demo build of Treezer and example datasets for testing and exploration.
+
+- **Offline:** download [`treezer_demo.html`](treezer_demo.html) and double-click it.
+
+Contents: `index.html` (landing page), `app/` (the viewer), `treezer_demo.html` (single-file viewer; `tree-viewer.html` is the same file under its old name), `data/` (demo datasets).
 
 ## Data
 
