@@ -365,7 +365,7 @@
             <li><b>The tree.</b> Drag to pan, scroll to zoom, click to select, right-click a clade for its menu.</li>
             <li><b>Tracks.</b> Data shown beside the tree: colour strips, scales, heatmaps; folded clades summarise their genomes.</li>
             <li><b>Side panel.</b> Your groups, highlight sets and an overview of the whole tree; the icon at the top right shows or hides it.</li>
-            <li><b>Panels below the tree.</b> <i>Genomes</i> (the table: filter, highlight, edit taxonomy), <i>Monophyly</i>, <i>Annotate</i> (tracks), <i>Clades</i> (shading and names) and <i>Style</i>.</li>
+            <li><b>Panels below the tree.</b> <i>Genomes</i> (the table: filter, highlight, edit taxonomy), <i>Monophyly</i>, <i>Tracks</i>, <i>Shading</i> (clade shading and names) and <i>Style</i>.</li>
           </ol>
         </div>
       </section>
@@ -423,10 +423,10 @@
           <div class="group">
             <div class="group-head"><h3>Tracks and shading</h3><p>Data beside the tree, and clades shaded by rank.</p></div>
             <div class="cards">
-              <a class="card shot" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=ncbi_country,checkm2_completeness,genome_size,gc_percentage&panel=annotate">
-                <img src="img/panel-annotate.webp" alt="Treezer with the annotate panel open: country, completeness, genome size and GC shown as tracks beside the tree" width="1520" height="855" loading="lazy" />
+              <a class="card shot" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum&strips=ncbi_country,checkm2_completeness,genome_size,gc_percentage&panel=tracks">
+                <img src="img/panel-annotate.webp" alt="Treezer with the Tracks panel open: country, completeness, genome size and GC shown as tracks beside the tree" width="1520" height="855" loading="lazy" />
                 <div class="body">
-                  <span class="kind">Annotate panel</span>
+                  <span class="kind">Tracks panel</span>
                   <h3>Add tracks beside the tree</h3>
                   <p>Show metadata as colour strips, colour scales, heatmaps or bars; folded clades summarise what they contain.</p>
                   <div class="foot"><span>4 tracks · country, quality, size, GC</span><span class="go">Open →</span></div>
@@ -435,7 +435,7 @@
               <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=order&shade=phylum&layout=circular">
                 <span class="kind">Circular layout</span>
                 <h3>Archaea, shaded by phylum</h3>
-                <p>Folded to order. Open the <b>clades</b> tab to change rank, colours, depth and labels; Export ▾ → SVG for a figure.</p>
+                <p>Folded to order. Open the <b>Shading</b> tab to change rank, colours, depth and labels; Export ▾ → SVG for a figure.</p>
                 <div class="foot"><span>10,122 tips</span><span class="go">Open →</span></div>
               </a>
             </div>
@@ -458,7 +458,7 @@
               <a class="card" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country&taxonomyColumn=gtdb_taxonomy&collapse=order&shade=phylum&layout=unrooted">
                 <span class="kind">Unrooted layout</span>
                 <h3>Archaea, equal-angle</h3>
-                <p>Every clade has its own wedge, so branches never cross. Try branch lengths “square root” in the clades tab.</p>
+                <p>Every clade has its own wedge, so branches never cross. Try branch lengths “square root” in the Shading tab.</p>
                 <div class="foot"><span>10,122 tips</span><span class="go">Open →</span></div>
               </a>
             </div>
@@ -513,7 +513,7 @@ GCA_000005845.2  d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…       
                   The rank buttons fold the tree by taxonomy; right-click any clade for more. Your own groups and edited fields are kept
                   in this browser. In the <b>genomes</b> table you can correct or extend the taxonomy: double-click a Taxonomy cell to
                   edit one lineage, or set one rank (e.g. <code>o__MyOrder</code>) for every listed genome, then download it with
-                  <b>⤓ taxonomy</b> (GTDB format). Everything can be undone with <kbd>⌘Z</kbd> / <kbd>Ctrl+Z</kbd>.
+                  <b>Export ▾ → Taxonomy</b> (GTDB format). Everything can be undone with <kbd>⌘Z</kbd> / <kbd>Ctrl+Z</kbd>.
                 </p>
               </li>
               <li>
