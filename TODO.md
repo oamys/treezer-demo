@@ -17,11 +17,7 @@
          stating evaluation-only use; holder to be confirmed.
 
 ## Content to add later
-- [ ] Author(s) and lab/affiliation in the footer.
-- [ ] Version number in the hero build line (currently "Demo build · October 2026 · tested with GTDB r232").
-- [ ] Non-GTDB example datasets (e.g. a small species tree, a gene or viral tree).
+- [ ] Author(s) and lab/affiliation in the footer (needs the user's details).
 
-## Viewer (outside the landing page)
-- [x] Viewer renamed to Treezer (sessions save as `.treezer`); screenshots in `img/` retaken from the renamed build.
-- [ ] Option to hide single-genome tip labels: singleton phyla still show "p__X (1)" with singleton names turned off.
-      The circular screenshot has those two labels removed by hand.
+Everything else (version number, examples, hero picture, interface overview, viewer items) is now on the single task
+list in the source repository: `docs/v2/STATUS.md`, section G (tasks 24–36) and task 23 (export as one HTML file).
