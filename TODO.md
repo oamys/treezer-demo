@@ -1,7 +1,7 @@
 # Landing page — parked items
 
 ## Decisions pending (in order)
-1. [ ] Confirm the name "Treezer".
+1. [x] Confirm the name "Treezer" (confirmed 2026-10-10; rename done, tag `treezer-0.1.0`).
 2. [ ] Once the name is confirmed: decide whether there will be a paper/preprint. Then fill in the "Cite Treezer"
        section (currently heading + "Coming soon." only).
 3. [x] Move the site address away from "phylovista": the demo now lives in oamys/treezer-demo
