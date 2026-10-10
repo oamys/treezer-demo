@@ -6,7 +6,7 @@ Treezer is a fast, ARB-style phylogenetic tree explorer that runs entirely in th
 taxonomy, annotate clades, search and highlight by metadata, compare taxonomies, re-root and export figures.
 This repository hosts a demo build and demo datasets for testing.
 
-- **Offline:** download [`treezer.html`](treezer.html) and double-click it.
+- **Offline:** download [`treezer_demo.html`](treezer.html) and double-click it.
 
 Contents: `index.html` (landing page), `app/` (the viewer), `treezer.html` (single-file viewer; `tree-viewer.html` is the same file under its old name), `data/` (demo datasets).
 
