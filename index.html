@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Treezer — phylogenetic tree viewer</title>
-    <meta name="description" content="Treezer: a lightweight phylogenetic tree viewer in one HTML file. Explore, annotate and present trees, from small species trees to large genome phylogenies such as the full GTDB bacterial tree." />
+    <meta name="description" content="Treezer: a lightweight phylogenetic tree viewer in one HTML file. Explore, annotate and present trees — genome phylogenies, 16S / 18S trees, gene trees — from small species trees to the full GTDB bacterial tree. Reads Newick and NEXUS, and GTDB, SILVA, Greengenes, PR2, QIIME 2 and DADA2 taxonomies." />
     <link rel="icon" type="image/svg+xml" href="img/logo.svg" />
     <link rel="stylesheet" href="fonts.css" />
     <style>
@@ -245,15 +245,16 @@
           <h1>Treezer</h1>
           <p class="tagline">Explore large phylogenies with ease.</p>
           <p class="lead">
-            Fold clades by taxonomy, explore lineages and highlight genomes, all in a lightweight viewer that runs in
-            your browser. From small species trees to genome phylogenies with over 100,000 tips.
+            Fold clades by taxonomy, explore lineages and make publication figures, all in a lightweight viewer that runs
+            in your browser. From small species trees to genome phylogenies with over 100,000 tips; GTDB, SILVA,
+            Greengenes and PR2 (18S) taxonomies.
           </p>
           <div class="actions">
             <a class="btn" href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum" title="Opens the GTDB archaeal tree with its metadata, folded to phylum">Launch Treezer →</a>
-            <a class="btn ghost tz-download" href="treezer-0.8.0.html" download>Download Treezer <span class="tz-version">0.8.0</span> <span class="tz-size">(2.6 MB)</span> ↓</a>
+            <a class="btn ghost tz-download" href="treezer-0.8.1.html" download>Download Treezer <span class="tz-version">0.8.1</span> <span class="tz-size">(2.6 MB)</span> ↓</a>
           </div>
           <p class="onefile">All you need is one HTML file: download it, double-click it, and Treezer opens in your web browser — even offline.</p>
-          <p class="build">Version <span class="tz-version">0.8.0</span> · tested with GTDB&nbsp;r232</p>
+          <p class="build">Version <span class="tz-version">0.8.1</span> · tested with GTDB&nbsp;r232</p>
           </div>
           <!-- 03 Viewer showcase -->
           <div class="view">
@@ -393,8 +394,8 @@
               <a class="card own" href="app/">
                 <span class="kind">Your data</span>
                 <h3>Open your own tree</h3>
-                <p>Any Newick tree — IQ-TREE, FastTree, RAxML, GTDB-Tk — plus a TSV/CSV table about its tips. See the guide below.</p>
-                <div class="foot"><span>.nwk · .tree · .tsv · .csv</span><span class="go">Launch →</span></div>
+                <p>Any Newick or NEXUS tree — IQ-TREE, RAxML, FastTree, MrBayes, BEAST, GTDB-Tk — plus its taxonomy (GTDB, SILVA, Greengenes, PR2, QIIME 2, DADA2) or any table about its tips. See the guide below.</p>
+                <div class="foot"><span>.nwk · .nex · .tree · .tsv · .csv</span><span class="go">Launch →</span></div>
               </a>
             </div>
           </div>
@@ -478,9 +479,12 @@
               <li>
                 <h3>Open tree…</h3>
                 <p>
-                  A Newick tree: IQ-TREE <code>.treefile</code>, FastTree, RAxML, GTDB-Tk <code>de_novo_wf</code> or GTDB trees
-                  (<code>.nwk</code>, <code>.tree</code>, <code>.tre</code>, <code>.txt</code>). Support values and GTDB-style internal
-                  labels such as <code>'100.0:p__Bacillota'</code> are understood. Trees with 100,000+ genomes are fine.
+                  A Newick tree — IQ-TREE <code>.treefile</code>, RAxML, FastTree, PhyML, GTDB-Tk <code>de_novo_wf</code> or GTDB trees
+                  (<code>.nwk</code>, <code>.tree</code>, <code>.tre</code>, <code>.txt</code>) — or a NEXUS tree from MrBayes
+                  (<code>.con.tre</code>), BEAST, PAUP* or FigTree (<code>.nex</code>, <code>.nexus</code>). Support values are read from
+                  labels (<code>95</code>, <code>85.3/97</code>) and from annotations (<code>[&amp;prob=0.95]</code>,
+                  <code>[&amp;posterior=0.99]</code>); GTDB-style internal labels such as <code>'100.0:p__Bacillota'</code> name the
+                  clades. Trees with 100,000+ tips are fine.
                 </p>
               </li>
               <li>
@@ -497,13 +501,14 @@ bin_001          d__Bacteria;p__Chloroflexota;c__Anaerolineae;o__;f__;g__;s__ so
 GCA_000005845.2  d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…       gut      100</pre>
                 <table class="kinds">
                   <tr><td>GTDB taxonomy file</td><td><code>bac120_taxonomy_r232.tsv</code> (accession + lineage) — becomes the taxonomy.</td></tr>
+                  <tr><td>16S / 18S taxonomy</td><td>QIIME 2 <code>taxonomy.tsv</code>, DADA2 <code>assignTaxonomy</code> output (one column per rank), mothur <code>.tax</code>, SILVA, Greengenes or PR2 lineages — the ranks are recognised: GTDB's seven, or PR2's nine (domain, supergroup, division, subdivision, class, order, family, genus, species).</td></tr>
                   <tr><td>GTDB-Tk summary</td><td><code>gtdbtk.bac120.summary.tsv</code> — its classification becomes the taxonomy; closest reference, ANI and RED go to the table.</td></tr>
                   <tr><td>GTDB metadata</td><td><code>bac120_metadata_r232.tsv.gz</code> (300 MB) — streamed; choose the columns.</td></tr>
                   <tr><td>Your own metadata</td><td>Any columns: habitat, quality, traits… Use them in searches (<code>habitat=soil</code>, <code>completeness&gt;=90</code>), in the table and as trait strips.</td></tr>
                   <tr><td>Feature tables</td><td>Genome + feature (e.g. KEGG KOs from DRAM), or features × genomes — for presence / absence strips.</td></tr>
                   <tr><td>iTOL annotation files</td><td>Colour strips (kept in their colours), clade colours and ranges, text labels and collapse lists; <code>tipA|tipB</code> references work as in iTOL.</td></tr>
                 </table>
-                <p>Empty ranks such as <code>o__;f__</code> are fine: those genomes are simply unassigned at that rank.</p>
+                <p>Empty ranks such as <code>o__;f__</code> (or <code>NA</code> in DADA2 output) are fine: those tips are simply unassigned at that rank.</p>
               </li>
               <li>
                 <h3>Fold, search, annotate</h3>
@@ -587,7 +592,7 @@ GCA_000005845.2  d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;…       
           <span class="brand"><img class="mark" src="img/logo.svg" alt="" width="24" height="24" />Treezer <span class="pill">demo</span></span>
           <div class="links">
             <a href="app/?tree=../data/gtdb_r232_ar53.tree&metadata=../data/gtdb_r232_ar53_metadata.tsv&columns=gtdb_taxonomy,ncbi_organism_name,checkm2_completeness,checkm2_contamination,genome_size,gc_percentage,ncbi_isolation_source,ncbi_country,gtdb_type_species_of_genus&taxonomyColumn=gtdb_taxonomy&collapse=phylum">Launch</a>
-            <a class="tz-download" href="treezer-0.8.0.html" download>Download Treezer <span class="tz-version">0.8.0</span></a>
+            <a class="tz-download" href="treezer-0.8.1.html" download>Download Treezer <span class="tz-version">0.8.1</span></a>
             <a href="versions/">All versions</a>
             <a href="https://github.com/oamys/treezer-demo">GitHub</a>
           </div>
